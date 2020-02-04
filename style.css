@@ -1,0 +1,42 @@
+
+
+.header {
+  color:white;
+  background-color: #515151;
+}
+
+.searchBox {
+  background-color: #f2f3f4;
+}
+
+.cityResults {
+}
+
+
+.cityDiv {
+  border: 1px solid grey; 
+  margin-top: -1px;
+  padding-top: 2px;
+  background-color: white;
+}
+
+.cityDiv:hover {
+  background-color: blue;
+  color: white;
+}
+
+.currentWeatherBox {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.futureWeatherBox {
+
+}
+
+.fiveDay {
+  background-color: blue;
+  color:white;
+  margin-right: 1%;
+  margin-left: 1%;
+}
