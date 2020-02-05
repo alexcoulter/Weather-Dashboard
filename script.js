@@ -167,7 +167,7 @@ function forecast() {
   });
 }
 
-$(document).on("click", ".cityDiv", function (event) {
+$(document).on("click", ".cityDiv h4", function (event) {
   console.log("hey");
   city = $(this).text();
   $(this).remove();
