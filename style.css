@@ -2,6 +2,7 @@
   min-height: -webkit-calc(100vh - 72px);
   min-height: -moz-calc(100vh - 72px);
   min-height: calc(100vh - 72px);
+  background-image: url("https://cdn.pixabay.com/photo/2016/03/27/07/32/light-1282314_1280.jpg");
 }
 
 .header {
@@ -10,7 +11,7 @@
 }
 
 .searchBox {
-  background-color: #f2f3f4;
+  background-color:rgba(139,144,158,.6);
 }
 
 #citySearch {
@@ -26,7 +27,7 @@
   border: 1px solid grey; 
   margin-top: -1px;
   padding-top: 2px;
-  background-color: white;
+  background-color: rgba(255,255,255,.9);
 }
 
 .cityDiv:hover {
@@ -35,13 +36,13 @@
 }
 
 .resultsBox {
- 
-
+  
 }
+
 .currentWeatherBox {
   border: 1px solid gray;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgba(255,255,255,.7);
   background-image: url("imgs/hurricane.jpg");
   background-size: cover;
   height: 70vh;
@@ -52,7 +53,7 @@
 }
 
 .five-day {
-  background-color: blue;
+  background-color: rgba(31,87,242,.9);
   color:white;
   margin: 0 auto;
   margin-right: 1%;
@@ -64,6 +65,10 @@
 
 @media only screen and (max-width: 992px) {
 .resultsBox {
-   background-color: #f2f3f4;
+   background-image: none;
+}
+
+.content {
+  background-image: url("https://cdn.pixabay.com/photo/2016/03/27/07/32/light-1282314_1280.jpg");
 }
 }
