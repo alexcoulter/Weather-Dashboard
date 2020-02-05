@@ -1,4 +1,8 @@
-
+.content {
+  min-height: -webkit-calc(100vh - 72px);
+  min-height: -moz-calc(100vh - 72px);
+  min-height: calc(100vh - 72px);
+}
 
 .header {
   color:white;
@@ -9,7 +13,12 @@
   background-color: #f2f3f4;
 }
 
+#citySearch {
+  min-width: 0;
+}
+
 .cityResults {
+  max-width: 300px;
 }
 
 
@@ -25,18 +34,36 @@
   color: white;
 }
 
+.resultsBox {
+ 
+
+}
 .currentWeatherBox {
   border: 1px solid gray;
   border-radius: 5px;
+  background-color: white;
+  background-image: url("imgs/hurricane.jpg");
+  background-size: cover;
+  height: 70vh;
 }
 
 .futureWeatherBox {
 
 }
 
-.fiveDay {
+.five-day {
   background-color: blue;
   color:white;
+  margin: 0 auto;
   margin-right: 1%;
   margin-left: 1%;
+  border-radius: 10px;
+  overflow:hidden;
+  text-align: center;
+}
+
+@media only screen and (max-width: 992px) {
+.resultsBox {
+   background-color: #f2f3f4;
+}
 }

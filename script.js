@@ -1,9 +1,8 @@
 //Add error message if cannot find city
 //add clickable 'x' to cities to remove
-//mobile compatible
+//{x}mobile compatible
 //implement geolocation
-//find weather picture for first time load
-//round 5day div borders-
+//{x}find weather picture for first time load (pixabay.com)
 
 
 var cityArray = [];
@@ -67,9 +66,9 @@ function apiCall() {
   }).then(function (response) {
     console.log(response);
 
-
     city = response.name;
     console.log(cityArray);
+    $(".currentWeatherBox").css({"background-image": "none", "height": "auto"});
 
     newDiv = $("<div>").addClass("cityDiv");
     $("#cityResults").prepend(newDiv);
@@ -151,9 +150,12 @@ function forecast() {
   }).then(function (response) {
     console.log(response);
 
-
+    
+    $("#fiveLabel").text("5 Day Forecast:");
+    
+    
     for (var i = 1; i < 6; i++) {
-      var j = (i * 8) - 1;
+      var j = (i * 8) - 2;
       var newDate = $("<p>").text(moment().add(i, "days").format('l'));
       var newImg = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + response.list[j].weather[0].icon + "@2x.png");
       var temp = $("<p>").text("Temp: " + response.list[j].main.temp.toFixed(1) + " " + String.fromCharCode(176) + "F");
