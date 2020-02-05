@@ -77,7 +77,7 @@ function apiCall() {
 
 
 
-    $("#cityAndDate").text(response.name + " " + moment().format('l'));
+    $("#cityAndDate").text(response.name + " (" + moment().format('l') + ") ");
     $("#weatherImg").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
     var temp = response.main.temp.toFixed(1);
 
