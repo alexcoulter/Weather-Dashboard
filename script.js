@@ -26,7 +26,7 @@ function savedSearches() {
     for (var i = 0; i < cityArray.length; i++) {
       newDiv = $("<div>").addClass("cityDiv");
       $("#cityResults").prepend(newDiv);
-      var newCity = $("<h4>").text(cityArray[i]).addClass("newCity px-2");
+      var newCity = $("<a>").text(cityArray[i]).addClass("newCity px-2");
       newDiv.prepend(newCity);
     }
   }
@@ -72,7 +72,7 @@ function apiCall() {
 
     newDiv = $("<div>").addClass("cityDiv");
     $("#cityResults").prepend(newDiv);
-    var newCity = $("<h4>").text(city).addClass("newCity px-2");
+    var newCity = $("<a>").text(city).addClass("newCity px-2");
     newDiv.prepend(newCity);
 
 
@@ -167,7 +167,7 @@ function forecast() {
   });
 }
 
-$(document).on("click", ".cityDiv h4", function (event) {
+$(document).on("click", ".cityDiv a", function (event) {
   console.log("hey");
   city = $(this).text();
   $(this).remove();
