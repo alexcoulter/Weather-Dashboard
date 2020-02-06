@@ -182,6 +182,7 @@ $("#clearBtn").on("click", function () {
   localStorage.clear();
   $("#cityResults").empty();
   $("#clearBtn").addClass("hide");
+  cityArray = [];
 });
 
 
