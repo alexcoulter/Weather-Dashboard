@@ -30,6 +30,11 @@
           <button type="submit" class="btn btn-primary mb-2 d-inline" id="searchBtn"><i
               class="fa fa-search"></i></button>
         </form>
+        <div id="alert1" class="alert alert-danger hide alert-dismissible fade show" role="alert">
+          <p>Couldn't find that city! Please try again</p>
+          <button type="button" class="close" data-hide="alert" aria-label="Close" onclick="alertHide()">
+            <span aria-hidden="true">&times;</span>
+        </div>
 
         <div class="cityResults mt-1" id="cityResults">
 

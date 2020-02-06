@@ -54,6 +54,13 @@ span {
   color: white;
 }
 
+#alert1 {
+  max-width: 360px;
+}
+.hide {
+  display: none;
+}
+
 .resultsBox {
   
 }

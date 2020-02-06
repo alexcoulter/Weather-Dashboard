@@ -1,4 +1,4 @@
-
+var cityFound = false;
 var newDiv;
 var city;
 var queryUrl;
@@ -28,13 +28,13 @@ function success(position) {
   apiCall(queryUrl);
 }
 function error() {
- 
+ console.log("not given location access by user");
 }
 }
 
 
 
-//Add error message if cannot find city
+
 //add clickable 'x' to cities to remove
 //{x}find weather picture for first time load (pixabay.com)
 
@@ -79,42 +79,51 @@ $("#searchBtn").on("click", function (event) {
 function apiCall(queryUrl) {
   
 console.log(queryUrl);
-  $.ajax({
-    url: queryUrl,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-
-    city = response.name;
-    console.log(cityArray + "last");
-    $(".currentWeatherBox").css({"background-image": "none", "height": "auto"});
-    $(".five-day").css("display", "block");
-
-    newDiv = $("<div>").addClass("cityDiv");
-    $("#cityResults").prepend(newDiv);
-    var newCity = $("<a>").text(city).addClass("newCity px-2");
-    newDiv.prepend(newCity);
-
-
-
-    $("#city").text(response.name);
-    $("#date").text("  ( " + moment().format('l') + ") ");
-    $("#weatherImg").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
-    $("#description").text("'" + response.weather[0].description + "'");
     
-    var temp = response.main.temp.toFixed(1);
-    $('#temperature').html("Temperature: " + temp + " &#8457;");
-    $('#humidity').text("Humidity: " + response.main.humidity + "%");
-    $('#windSpeed').text("Wind Speed: " + response.wind.speed + " MPH");
+$.ajax({
+      url: queryUrl,
+      method: "GET",
+      success: function(response){
+        $("#alert1").addClass("hide");
+          console.log(response);
 
-    lon = response.coord.lon;
-    lat = response.coord.lat;
-
-    savedSearches();
-    uvIndex();
-    forecast();
-  });
-}
+          cityFound = true;
+          city = response.name;
+          console.log(cityArray + "last");
+          $(".currentWeatherBox").css({"background-image": "none", "height": "auto"});
+          $(".five-day").css("display", "block");
+      
+          newDiv = $("<div>").addClass("cityDiv");
+          $("#cityResults").prepend(newDiv);
+          var newCity = $("<a>").text(city).addClass("newCity px-2");
+          newDiv.prepend(newCity);
+      
+      
+      
+          $("#city").text(response.name);
+          $("#date").text("  ( " + moment().format('l') + ") ");
+          $("#weatherImg").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
+          $("#description").text("'" + response.weather[0].description + "'");
+          
+          var temp = response.main.temp.toFixed(1);
+          $('#temperature').html("Temperature: " + temp + " &#8457;");
+          $('#humidity').text("Humidity: " + response.main.humidity + "%");
+          $('#windSpeed').text("Wind Speed: " + response.wind.speed + " MPH");
+      
+          lon = response.coord.lon;
+          lat = response.coord.lat;
+      
+          savedSearches();
+          uvIndex();
+          forecast();
+      },
+      error: function(xhr, status, error){
+          console.log("error");
+          $("#alert1").removeClass("hide");
+      }
+    });
+  }
+   
 
 
 function uvIndex() {
@@ -179,7 +188,7 @@ function forecast() {
   });
 }
 
-$(document).on("click", ".cityDiv", function (event) {
+$(document).on("mousedown touchstart", ".cityDiv", function (event) {
   console.log("hey");
   city = $(this).text();
   console.log(city);
@@ -189,5 +198,6 @@ $(document).on("click", ".cityDiv", function (event) {
 });
 
 
-
-
+function alertHide() {
+  $("#alert1").addClass("hide");
+}
