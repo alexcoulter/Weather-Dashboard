@@ -1,25 +1,56 @@
-//Add error message if cannot find city
-//add clickable 'x' to cities to remove
-//{x}mobile compatible
-//implement geolocation
-//{x}find weather picture for first time load (pixabay.com)
 
-
-var cityArray = [];
 var newDiv;
 var city;
 var queryUrl;
 var lon;
 var lat;
 var count = 1;
-cityArray = JSON.parse(localStorage.getItem("cityArray") || "[]");
+console.log(cityArray);
+var cityArray = JSON.parse(localStorage.getItem("cityArray") || "[]");
+console.log(cityArray);
 if (cityArray[0]) {
-  savedSearches();
   city = cityArray[cityArray.length - 1];
-  apiCall();
+  console.log(city);
+  savedSearches();
+  
+  queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
+  apiCall(queryUrl);
+}
+else{
+
+navigator.geolocation.getCurrentPosition(success, error);
+function success(position) {
+  const lat  = position.coords.latitude;
+  const lon = position.coords.longitude;
+  console.log(lat);
+  queryUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon +"&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
+
+  apiCall(queryUrl);
+}
+function error() {
+ 
+}
 }
 
+
+
+//Add error message if cannot find city
+//add clickable 'x' to cities to remove
+//{x}find weather picture for first time load (pixabay.com)
+
+
 function savedSearches() {
+  console.log(cityArray + "ayayayya");
+  if (cityArray) {
+    for (var i = 0; i < cityArray.length; i++) {
+      if (city === cityArray[i]) {
+        cityArray.splice(i, 1);
+      }
+    }
+  }
+  cityArray.push(city);
+  localStorage.setItem("cityArray", JSON.stringify(cityArray));
+
   $("#cityResults").empty();
 
   if (cityArray) {
@@ -31,35 +62,23 @@ function savedSearches() {
     }
   }
 }
-// navigator.geolocation.getCurrentPosition(success, error);
-// function success(position) {
-//   const lat  = position.coords.latitude;
-//   const lon = position.coords.longitude;
-//   console.log(lat);
-// }
-// function error() {
-// }
 
-function pageLoad() {
-
-}
 
 
 $("#searchBtn").on("click", function (event) {
   event.preventDefault();
 
-  //city = $("#citySearch").val();
+  
   city = $("#citySearch").val();
   $("#citySearch").val("");
-  apiCall();
+  queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
+  apiCall(queryUrl);
 });
 
 
-function apiCall() {
-  var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
-  //var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
-  //var queryUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=37.75&lon=-122.37&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
-
+function apiCall(queryUrl) {
+  
+console.log(queryUrl);
   $.ajax({
     url: queryUrl,
     method: "GET"
@@ -67,8 +86,9 @@ function apiCall() {
     console.log(response);
 
     city = response.name;
-    console.log(cityArray);
+    console.log(cityArray + "last");
     $(".currentWeatherBox").css({"background-image": "none", "height": "auto"});
+    $(".five-day").css("display", "block");
 
     newDiv = $("<div>").addClass("cityDiv");
     $("#cityResults").prepend(newDiv);
@@ -77,26 +97,18 @@ function apiCall() {
 
 
 
-    $("#cityAndDate").text(response.name + " (" + moment().format('l') + ") ");
+    $("#city").text(response.name);
+    $("#date").text("  ( " + moment().format('l') + ") ");
     $("#weatherImg").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
+    $("#description").text("'" + response.weather[0].description + "'");
+    
     var temp = response.main.temp.toFixed(1);
-
     $('#temperature').html("Temperature: " + temp + " &#8457;");
     $('#humidity').text("Humidity: " + response.main.humidity + "%");
     $('#windSpeed').text("Wind Speed: " + response.wind.speed + " MPH");
 
     lon = response.coord.lon;
     lat = response.coord.lat;
-
-    if (cityArray) {
-      for (var i = 0; i < cityArray.length; i++) {
-        if (city === cityArray[i]) {
-          cityArray.splice(i, 1);
-        }
-      }
-    }
-    cityArray.push(city);
-    localStorage.setItem("cityArray", JSON.stringify(cityArray));
 
     savedSearches();
     uvIndex();
@@ -167,11 +179,13 @@ function forecast() {
   });
 }
 
-$(document).on("mousedown touchstart", ".cityDiv", function (event) {
+$(document).on("click", ".cityDiv", function (event) {
   console.log("hey");
   city = $(this).text();
+  console.log(city);
   $(this).remove();
-  apiCall();
+  queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=bfc1b977d5f0ad912b3dc6c21e34e887";
+  apiCall(queryUrl);
 });
 
 

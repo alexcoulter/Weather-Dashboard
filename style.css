@@ -1,16 +1,24 @@
+body {
+  overflow-x: hidden;
+}
+
 p {
   margin-bottom: .5rem;
 }
 
+span {
+  font-size: 22px;
+}
+
 #currentWeatherBox p {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .content {
   min-height: -webkit-calc(100vh - 72px);
   min-height: -moz-calc(100vh - 72px);
   min-height: calc(100vh - 72px);
-  background-image: url("https://cdn.pixabay.com/photo/2016/03/27/07/32/light-1282314_1280.jpg");
+  background-image: url("imgs/clouds.jpg");
 }
 
 .header {
@@ -38,6 +46,9 @@ p {
   background-color: rgba(255,255,255,.9);
 }
 
+.cityDiv a {
+  font-size: 22px;
+}
 .cityDiv:hover {
   background-color: blue;
   color: white;
@@ -57,11 +68,12 @@ p {
   height: 70vh;
 }
 
-.futureWeatherBox {
-
+#city {
+  border-bottom: 2px solid white;
 }
 
 .five-day {
+  display:none;
   background-color: rgba(31,87,242,.9);
   color:white;
   border: 1px solid white;

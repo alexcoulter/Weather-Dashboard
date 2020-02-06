@@ -30,32 +30,34 @@
           <button type="submit" class="btn btn-primary mb-2 d-inline" id="searchBtn"><i
               class="fa fa-search"></i></button>
         </form>
+
         <div class="cityResults mt-1" id="cityResults">
-        </div>
 
-      </div>
-
-      <div class="col-lg-8 resultsBox">
-        <div class="container-fluid mx-1 my-3 px-4 py-2 currentWeatherBox" id="currentWeatherBox">
-          <h2 id="cityAndDate" class="d-inline"></h2>
-          <img id="weatherImg" class="weatherImg d-inline">
-          <p id="temperature"></p>
-          <p id="humidity"></p>
-          <p id="windSpeed"></p>
-          <p id="uv"></p>
-        </div>
-
-        <div class="container-fluid my-1 mx-4 futureWeatherBox pb-2" id="futureWeatherBox">
-          <h2 id="fiveLabel"></h2>
-          <div class="row">
-            <div class="col-sm-2 five-day mb-2 pb-1" id="day1"></div>
-            <div class="col-sm-2 five-day mb-2 pb-1" id="day2"></div>
-            <div class="col-sm-2 five-day mb-2 pb-1" id="day3"></div>
-            <div class="col-sm-2 five-day mb-2 pb-1" id="day4"></div>
-            <div class="col-sm-2 five-day mb-2 pb-1" id="day5"></div>
-          </div>
         </div>
       </div>
+
+    <div class="col-lg-8 resultsBox">
+      <div class="container-fluid mx-1 my-3 px-4 py-2 currentWeatherBox" id="currentWeatherBox">
+        <h2 id="city" class="d-inline"></h2><span id = "date"></span><br>
+        <i><span id="description"></span></i>
+        <img id="weatherImg" class="weatherImg">
+        <p id="temperature"></p>
+        <p id="humidity"></p>
+        <p id="windSpeed"></p>
+        <p id="uv"></p>
+      </div>
+
+      <div class="container-fluid my-1 mx-4 futureWeatherBox pb-2" id="futureWeatherBox">
+        <h2 id="fiveLabel"></h2>
+        <div class="row">
+          <div class="col-sm-2 five-day mb-2 pb-1" id="day1"></div>
+          <div class="col-sm-2 five-day mb-2 pb-1" id="day2"></div>
+          <div class="col-sm-2 five-day mb-2 pb-1" id="day3"></div>
+          <div class="col-sm-2 five-day mb-2 pb-1" id="day4"></div>
+          <div class="col-sm-2 five-day mb-2 pb-1" id="day5"></div>
+        </div>
+      </div>
+    </div>
     </div>
   </main>
 
