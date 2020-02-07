@@ -18,7 +18,6 @@ else {
     apiCall(queryUrl);
   }
   function error() {
-    console.log("not given location access by user");
   }
 }
 
@@ -67,7 +66,6 @@ function apiCall(queryUrl) {
     method: "GET",
     success: function (response) {
       $("#alert1").addClass("hide");
-      console.log(response);
 
       city = response.name;
       $(".currentWeatherBox").css({ "background-image": "none", "height": "auto" });
@@ -80,7 +78,7 @@ function apiCall(queryUrl) {
 
       $("#city").text(response.name);
       $("#date").text("  ( " + moment().format('l') + ") ");
-      $("#weatherImg").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
+      $("#weatherImg").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
       $("#description").text("'" + response.weather[0].description + "'");
 
       var temp = response.main.temp.toFixed(1);
@@ -96,7 +94,6 @@ function apiCall(queryUrl) {
       forecast();
     },
     error: function () {
-      console.log("error");
       $("#alert1").removeClass("hide");
     }
   });
@@ -111,7 +108,6 @@ function uvIndex() {
     url: queryUrl,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
     var uv = response.value;
     uvText = "white";
 
@@ -149,7 +145,6 @@ function forecast() {
     url: queryUrl,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
 
     $("#fiveLabel").text("5 Day Forecast:");
 
@@ -157,7 +152,7 @@ function forecast() {
       //Gets closest weather info to current time of day for future forecast
       var j = (i * 8) - 2;
       var newDate = $("<p>").text(moment().add(i, "days").format('l'));
-      var newImg = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + response.list[j].weather[0].icon + "@2x.png");
+      var newImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + response.list[j].weather[0].icon + "@2x.png");
       var temp = $("<p>").text("Temp: " + response.list[j].main.temp.toFixed(1) + " " + String.fromCharCode(176) + "F");
       var humidity = $("<p>").text("humidity: " + response.list[j].main.humidity + "%");
 
